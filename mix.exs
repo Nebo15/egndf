@@ -32,4 +32,20 @@ defmodule Egndf.Mixfile do
      {:dogma, "~> 0.1", only: :dev},
      {:credo, "~> 0.4", only: [:dev, :test]}]
   end
+
+  defp description do
+    """
+    Simple Elixir client for open-source decision engine Gandalf https://gndf.io/.
+    """
+  end
+
+  defp package do
+    [# These are the default files included in the package
+     name: :egndf,
+     files: ["lib", "mix.exs", "README.md", "LICENSE.md"],
+     maintainers: ["Pavel Vesnin"],
+     licenses: ["MIT"],
+     links: %{"GitHub" => "https://github.com/Nebo15/egndf",
+              "Docs" => "http://ericmj.github.io/postgrex/"}]
+  end
 end
