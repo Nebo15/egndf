@@ -3,6 +3,12 @@ defmodule Egndf do
     Provides API interfaces
     Documentation: http://docs.gandalf4.apiary.io/#
   """
+  use Application
+
+  @doc false
+  def start(_type, _args) do
+    Egndf.Supervisor.start_link
+  end
 
   @doc """
     Make Decision from Table
