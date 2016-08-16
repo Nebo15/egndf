@@ -1,4 +1,9 @@
 defmodule Egndf.Api.Decisions do
+  @moduledoc """
+    Provides Decisions API interfaces
+    Documentation: http://docs.gandalf4.apiary.io/#reference/decision
+  """
+
   import Egndf.Api.Base
 
   def make(id, values) when is_binary(id) and is_map(values) do

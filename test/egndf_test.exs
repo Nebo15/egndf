@@ -3,7 +3,7 @@ defmodule EgndfTest do
   doctest Egndf
 
   test "make decision" do
-    a = Egndf.decision_make("57b239a84e5014160879b4da", %{is_set: 123, second: "string"})
+    a = Egndf.decision_make("57b2c934ce3c0c04f5688f3a", %{is_set: 123, second: "string"})
     IO.inspect a
   end
 end
