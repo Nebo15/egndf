@@ -5,6 +5,7 @@ defmodule Egndf.Mixfile do
     [app: :egndf,
      version: "0.1.0",
      elixir: "~> 1.3",
+     description: description(),
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps()]
