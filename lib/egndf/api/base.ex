@@ -6,31 +6,33 @@ defmodule Egndf.Api.Base do
 
   @endpoint Application.get_env(:egndf, :api_url, nil)
 
-
-  def get({:ok, params}, uri) do
-    normilize_resp get(@endpoint <> uri, get_req_headers!)
-  end
-
-  def get({:error, reason}, _uri) do
-    {:error, reason}
-  end
-
-  def post(values, uri) when is_map(values) do
-    values
-    |> encode_request_body
-    |> post(uri)
+  def send_get(path) do
+    path
+    |> get_uri
+    |> get(get_req_headers!)
+    |> normalize_resp
     |> decode_request_body
   end
 
-  def post({:ok, params}, uri) do
-    normilize_resp post(@endpoint <> uri, params, get_req_headers!)
+  def send_post(values, path) when is_map(values) do
+    values
+    |> encode_request_body
+    |> send_post(path)
+    |> decode_request_body
   end
 
-  def post({:error, reason}, _uri) do
+  def send_post({:ok, params}, path) do
+    path
+    |> get_uri
+    |> post(params, get_req_headers!)
+    |> normalize_resp
+  end
+
+  def send_post({:error, reason}, _path) do
     {:error, reason}
   end
 
-  def post(_, _) do
+  def send_post(_, _) do
     {:error, "param values must be a map and param uri must be a string"}
   end
 
@@ -75,12 +77,16 @@ defmodule Egndf.Api.Base do
     {:error, reason}
   end
 
-  defp normilize_resp(resp) do
+  defp normalize_resp(resp) do
     case resp do
       {:ok, %HTTPoison.Response{body: body}} ->
         {:ok, body}
       {:error, %HTTPoison.Error{reason: reason}} ->
         {:error, reason}
     end
+  end
+
+  defp get_uri(path) do
+    @endpoint <> path
   end
 end
