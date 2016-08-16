@@ -5,9 +5,10 @@ defmodule Egndf.Mixfile do
     [app: :egndf,
      version: "0.1.0",
      elixir: "~> 1.3",
-     description: description(),
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     description: description(),
+     package: package(),
      deps: deps()]
   end
 
@@ -47,6 +48,6 @@ defmodule Egndf.Mixfile do
      maintainers: ["Pavel Vesnin"],
      licenses: ["MIT"],
      links: %{"GitHub" => "https://github.com/Nebo15/egndf",
-              "Docs" => "http://ericmj.github.io/postgrex/"}]
+              "Docs" => "http://docs.gandalf4.apiary.io/"}]
   end
 end
