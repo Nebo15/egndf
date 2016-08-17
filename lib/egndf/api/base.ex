@@ -4,8 +4,6 @@ defmodule Egndf.Api.Base do
   """
   use HTTPoison.Base
 
-  @endpoint Application.get_env(:egndf, :api_url, nil)
-
   def send_get(path) do
     path
     |> get_uri
@@ -50,7 +48,7 @@ defmodule Egndf.Api.Base do
   defp encode_request_body(params) when is_map(params) do
     case Poison.encode(params) do
       {:error, _} ->
-        {:error, "can not encode request"}
+        {:error, "cannot encode request"}
       {:ok, _} = res ->
         res
     end
@@ -67,7 +65,7 @@ defmodule Egndf.Api.Base do
   defp decode_request_body({:ok, body}) do
     case Poison.decode(body) do
       {:error, _} ->
-        {:error, "can not decode body response"}
+        {:error, "cannot decode body response: " <> body}
       {:ok, _} = res ->
         res
     end
@@ -87,6 +85,11 @@ defmodule Egndf.Api.Base do
   end
 
   defp get_uri(path) do
-    @endpoint <> path
+    case Application.get_env(:egndf, :api_url, nil) do
+      uri when is_binary(uri) ->
+        uri <> path
+      _ ->
+        raise "Undefined config :api_url for :egndf"
+    end
   end
 end
