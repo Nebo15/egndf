@@ -10,7 +10,7 @@ The package can be installed as:
 
     ```elixir
     def deps do
-      [{:egndf, "~> 0.1.1"}]
+      [{:egndf, "~> 0.2.0"}]
     end
     ```
 
