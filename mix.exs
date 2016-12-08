@@ -16,7 +16,7 @@ defmodule Egndf.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :httpoison]]
+    [applications: [:logger, :httpoison, :confex]]
   end
 
   # Dependencies can be Hex packages:
@@ -31,6 +31,7 @@ defmodule Egndf.Mixfile do
   defp deps do
     [{:httpoison, "~> 0.9.0"},
      {:poison, "~> 2.0"},
+     {:confex, ">= 0.0.0"},
      {:dogma, "~> 0.1", only: :dev},
      {:credo, "~> 0.4", only: [:dev, :test]}]
   end
