@@ -33,7 +33,8 @@ defmodule Egndf.Mixfile do
      {:poison, "~> 2.2"},
      {:confex, ">= 0.0.0"},
      {:dogma, "~> 0.1", only: [:dev, :test]},
-     {:credo, "~> 0.4", only: [:dev, :test]}]
+     {:credo, "~> 0.4", only: [:dev, :test]},
+     {:ex_doc, ">= 0.0.0", only: :dev}]
   end
 
   defp description do
