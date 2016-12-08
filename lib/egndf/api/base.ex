@@ -2,6 +2,7 @@ defmodule Egndf.Api.Base do
   @moduledoc """
     Basic module for API requests
   """
+  use Confex, otp_app: :egndf
   use HTTPoison.Base
 
   def send_get(path) do
@@ -35,7 +36,7 @@ defmodule Egndf.Api.Base do
   end
 
   defp get_req_headers! do
-    case Application.get_env(:egndf, :auth, []) do
+    case Confex.get_map(:egndf, :auth, []) do
       [app_id: app_id, consumer_client_id: user, consumer_client_secret: pwd] ->
         [{"Content-Type", "application/json"},
          {"X-Application", app_id},
@@ -85,7 +86,7 @@ defmodule Egndf.Api.Base do
   end
 
   defp get_uri(path) do
-    case Application.get_env(:egndf, :api_url, nil) do
+    case Confex.get(:egndf, :api_url, nil) do
       uri when is_binary(uri) ->
         uri <> path
       _ ->
