@@ -1,6 +1,6 @@
 defmodule Egndf.Api.Base do
   @moduledoc """
-    Basic module for API requests
+  Basic module for API requests
   """
   use Confex, otp_app: :egndf
   use HTTPoison.Base

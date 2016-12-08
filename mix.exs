@@ -16,7 +16,7 @@ defmodule Egndf.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :httpoison, :confex]]
+    [applications: [:logger, :poison, :httpoison, :confex]]
   end
 
   # Dependencies can be Hex packages:
@@ -29,10 +29,10 @@ defmodule Egndf.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:httpoison, "~> 0.9.0"},
-     {:poison, "~> 2.0"},
+    [{:httpoison, "~> 0.10.0"},
+     {:poison, "~> 2.2"},
      {:confex, ">= 0.0.0"},
-     {:dogma, "~> 0.1", only: :dev},
+     {:dogma, "~> 0.1", only: [:dev, :test]},
      {:credo, "~> 0.4", only: [:dev, :test]}]
   end
 
@@ -46,7 +46,7 @@ defmodule Egndf.Mixfile do
     [# These are the default files included in the package
      name: :egndf,
      files: ["lib", "mix.exs", "README.md", "LICENSE.md"],
-     maintainers: ["Pavel Vesnin"],
+     maintainers: ["Pavel Vesnin", "Nebo #15"],
      licenses: ["MIT"],
      links: %{"GitHub" => "https://github.com/Nebo15/egndf",
               "Docs" => "http://docs.gandalf4.apiary.io/"}]

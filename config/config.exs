@@ -1,14 +1,9 @@
 use Mix.Config
 
-# Set auth config for consumer API
-# endpoint
-# config :egndf, :api_url, "https://gndf.io/api/v1/"
-
-# credentials
-# config :egndf, :auth, [
-#   app_id: "57b2c934ce3c0c04f63f9291",
-#   consumer_client_id: "1683d514ab502605205b34b0d889c0e6fc10f0de",
-#   consumer_client_secret: "4829d3e706e753d3bd1dab9b0e27c4fa81393c92",
-# ]
-
-import_config "#{Mix.env}.exs"
+config :egndf,
+  api_url: {:system, "GNDF_API_URL", "https://api.gndf.io/api/v1/"},
+  auth: [
+    app_id: {:system, "GNDF_APP_ID", "577f5bfae79e85431c4220b3"},
+    consumer_client_id: {:system, "GNDF_CONSUMER_CLIENT_ID", "0f2e8def610e31003e1eea75e6635004885ae61f"},
+    consumer_client_secret: {:system, "GNDF_CONSUMER_CLIENT_SECRET", "bf3cd2f8975ec2baf6bcc13145dbbb0b78ffa29b"},
+  ]
